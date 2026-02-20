@@ -68,10 +68,10 @@ Not tracked
 - [x] Option 1: Request Logging Middleware
 - [ ] Option 2: API Pagination
 - [x] Option 3: Advanced Validation
-- [ ] Option 4: Task Filtering & Search
+- [x] Option 4: Task Filtering & Search
 - [ ] Option 5: Form Validation & UX
 - [ ] Option 6: Drag-and-Drop Task Reordering
-- [ ] Option 7: Local Storage / Offline Support
+- [x] Option 7: Local Storage / Offline Support
 - [ ] Option 8: Real-time Updates
 - [ ] Option 9: Task Statistics Dashboard
 
