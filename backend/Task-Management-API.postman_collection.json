@@ -1,0 +1,237 @@
+{
+  "info": {
+    "_postman_id": "task-management-api-collection",
+    "name": "Task Management API",
+    "description": "Collection for testing Task Management RESTful API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["health"]
+        },
+        "description": "Check if the server is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Complete project documentation\",\n  \"description\": \"Write comprehensive documentation for the task management API\",\n  \"status\": \"pending\",\n  \"dueDate\": \"2026-02-25\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        },
+        "description": "Create a new task. Status must be one of: pending, in-progress, completed"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Tasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        },
+        "description": "Retrieve all tasks"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Tasks Sorted by Due Date",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks?sortBy=dueDate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"],
+          "query": [
+            {
+              "key": "sortBy",
+              "value": "dueDate"
+            }
+          ]
+        },
+        "description": "Retrieve all tasks sorted by due date (ascending)"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Task By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "1"]
+        },
+        "description": "Retrieve a specific task by its ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Complete project documentation - Updated\",\n  \"description\": \"Write comprehensive documentation for the task management API with examples\",\n  \"status\": \"in-progress\",\n  \"dueDate\": \"2026-02-28\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "1"]
+        },
+        "description": "Update an existing task. All fields are optional. Status must be one of: pending, in-progress, completed"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Task Status Only",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"completed\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "1"]
+        },
+        "description": "Update only the status of a task (partial update example)"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Task",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "1"]
+        },
+        "description": "Delete a task by its ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Task - Validation Error (Missing Title)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"This will fail validation\",\n  \"status\": \"pending\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        },
+        "description": "Test validation error when title is missing"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Task - Validation Error (Invalid Status)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Test Task\",\n  \"description\": \"This will fail validation\",\n  \"status\": \"invalid-status\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        },
+        "description": "Test validation error when status is invalid"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Task By ID - Not Found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "999"]
+        },
+        "description": "Test 404 error when task doesn't exist"
+      },
+      "response": []
+    }
+  ]
+}
